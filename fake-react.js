@@ -1,9 +1,20 @@
+const ref = Symbol("ref");
+
 function render(element, mountNode) {
 	mountNode.appendChild(element);
 }
 
 function createElement(name, props = {}, children) {
-	const element = document.createElement(name);
+	let element;
+	if (typeof name === "function") {
+		props.children = children;
+		children = null;
+		const component = new name(props);
+		element = component.render();
+		component[ref] = element;
+	} else {
+		element = document.createElement(name);
+	}
 
 	Object.keys(props).forEach(propName => {
 		// TODO "class" and "for" attrs
@@ -17,4 +28,17 @@ function createElement(name, props = {}, children) {
 	else append(children);
 
 	return element;
+}
+
+class Component {
+	constructor(props) {
+		this.props = props;
+	}
+
+	setState(newState) {
+		Object.assign(this.state, newState);
+		const newNode = this.render();
+		this[ref].replaceWith(newNode);
+		this[ref] = newNode;
+	}
 }
