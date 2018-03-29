@@ -1,13 +1,17 @@
 body {
     margin: 0;
-    padding: 0;
+    padding: 1%;
     font-family: sans-serif;
 }
 
 button {
-    width: 98%;
+    width: 100%;
     padding: 1%;
-    margin: 1%;
     font-weight: 900;
     color: green;
 }
+
+input {
+    margin: 0 5px;
+}
+
