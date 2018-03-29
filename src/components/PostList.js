@@ -1,7 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from "react";
 import PostListItem from "./PostListItem";
 import MoreButton from "./MoreButton";
-import data from '../data';
+import data from "../data";
 
 export default class PostList extends Component {
   state = {
@@ -9,7 +9,7 @@ export default class PostList extends Component {
   };
 
   showMore = () => {
-    this.setState(prev => ({page: prev.page + 1}));
+    this.setState(prev => ({ page: prev.page + 1 }));
   };
 
   render() {
@@ -18,11 +18,11 @@ export default class PostList extends Component {
     return (
       <Fragment>
         <ol>
-          {data.slice(0, showCount).map(
-            post => <PostListItem key={post.id} {...post}/>
-          )}
+          {data
+            .slice(0, showCount)
+            .map(post => <PostListItem key={post.id} {...post} />)}
         </ol>
-        {hasMore && <MoreButton action={this.showMore}/>}
+        {hasMore && <MoreButton action={this.showMore} />}
       </Fragment>
     );
   }

@@ -1,5 +1,5 @@
-import React from 'react';
+import React from "react";
 
-const MoreButton = ({action}) => <button onClick={action}>show more</button>;
+const MoreButton = ({ action }) => <button onClick={action}>show more</button>;
 
 export default MoreButton;

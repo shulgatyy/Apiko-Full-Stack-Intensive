@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const PostListItem = ({title, body}) => (
+const PostListItem = ({ title, body }) => (
   <li>
     <h3>{title}</h3>
     <p>{body}</p>
