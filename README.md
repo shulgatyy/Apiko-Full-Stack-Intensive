@@ -7,4 +7,4 @@ each task in own branch
 - [x] Rewrite you Post list using componentDidMount with fetch
 - [ ] Add loader
 - [x] Set interval for fetching your list
-- [ ] Prevent render for list item components
+- [x] Prevent render for list item components

@@ -1,10 +1,13 @@
 import React from "react";
 
-const PostListItem = ({ title, body }) => (
-  <li>
-    <h3>{title}</h3>
-    <p>{body}</p>
-  </li>
-);
-
-export default PostListItem;
+export default class PostListItem extends React.PureComponent {
+  render() {
+    const { title, body } = this.props;
+    return (
+      <li>
+        <h3>{title}</h3>
+        <p>{body}</p>
+      </li>
+    );
+  }
+}
