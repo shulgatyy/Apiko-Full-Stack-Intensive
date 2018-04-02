@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import PostListItem from "./PostListItem";
 import Search from "./Search";
 import NothingToShow from "./NothingToShow";
+import Loader from "./Loader";
 
 export default class PostList extends Component {
   state = {
@@ -49,7 +50,7 @@ export default class PostList extends Component {
     return (
       <Fragment>
         <Search value={search} onChange={this.handleChange} />
-        {isLoading ? "loading" : this.renderList()}
+        {isLoading ? <Loader/> : this.renderList()}
       </Fragment>
     );
   }
