@@ -1,44 +1,55 @@
 import React, { Component, Fragment } from "react";
 import PostListItem from "./PostListItem";
-import MoreButton from "./MoreButton";
-import data from "../data";
 import Search from "./Search";
 import NothingToShow from "./NothingToShow";
 
 export default class PostList extends Component {
   state = {
-    page: 1,
+    posts: [],
+    isLoading: true,
     search: ""
-  };
-
-  showMore = () => {
-    this.setState(prev => ({ page: prev.page + 1 }));
   };
 
   handleChange = ({ target: { value: search } }) => {
     this.setState({ search });
   };
 
-  static renderList(posts) {
-    return (
-      <ol>{posts.map(post => <PostListItem key={post.id} {...post} />)}</ol>
+  componentDidMount() {
+    this.fetchPosts();
+    this.interval = setInterval(() => this.fetchPosts(), 30 * 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  fetchPosts() {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then(r => r.json())
+      .then(r =>
+        this.setState({
+          posts: r,
+          isLoading: false
+        })
+      );
+  }
+
+  renderList() {
+    const { posts, search } = this.state;
+    const filtered = posts.filter(({ title }) => title.includes(search));
+    return filtered.length ? (
+      <ol>{filtered.map(post => <PostListItem key={post.id} {...post} />)}</ol>
+    ) : (
+      <NothingToShow />
     );
   }
 
   render() {
-    const { search, page } = this.state;
-    const showCount = page * 10;
-    const hasMore = data.length > showCount;
-    const postsToShow = data
-      .slice(0, showCount)
-      .filter(({ title }) => title.includes(search));
+    const { search, isLoading } = this.state;
     return (
       <Fragment>
         <Search value={search} onChange={this.handleChange} />
-        {postsToShow.length
-          ? PostList.renderList(postsToShow)
-          : <NothingToShow />}
-        {hasMore && <MoreButton action={this.showMore} />}
+        {isLoading ? "loading" : this.renderList()}
       </Fragment>
     );
   }

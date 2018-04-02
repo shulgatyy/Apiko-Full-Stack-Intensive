@@ -3,4 +3,8 @@
 
 each task in own branch
 
-[Lesson 4 - React - Forms](https://docs.google.com/presentation/d/1b0VPN0ps0XNY7G_WWLx3F8KuzndR7486ZLnXDADUsJA/edit#slide=id.g352cd2f382_0_53)
+[Lesson 5 - React - Component lifecycle](https://docs.google.com/presentation/d/1e31o458zhhz4a5jRR2UavsIGQXzAGe8AtjBPxfKlNBw/edit#slide=id.g352cd2f382_0_53)
+- [x] Rewrite you Post list using componentDidMount with fetch
+- [ ] Add loader
+- [x] Set interval for fetching your list
+- [ ] Prevent render for list item components
